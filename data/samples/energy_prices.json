@@ -1,0 +1,35 @@
+{
+  "schedule_id": "tou-commercial-standard",
+  "name": "Grid Utility Commercial Fleet TOU Tariff",
+  "currency": "USD",
+  "windows": [
+    {
+      "start_hour": 0,
+      "end_hour": 6,
+      "rate_per_kwh": 0.08,
+      "rate_type": "OFF_PEAK",
+      "label": "Super Off-Peak Night"
+    },
+    {
+      "start_hour": 6,
+      "end_hour": 16,
+      "rate_per_kwh": 0.16,
+      "rate_type": "MID_PEAK",
+      "label": "Daytime Regular / Mid-Peak"
+    },
+    {
+      "start_hour": 16,
+      "end_hour": 21,
+      "rate_per_kwh": 0.34,
+      "rate_type": "ON_PEAK",
+      "label": "Evening Critical Peak"
+    },
+    {
+      "start_hour": 21,
+      "end_hour": 24,
+      "rate_per_kwh": 0.1,
+      "rate_type": "OFF_PEAK",
+      "label": "Late Evening Off-Peak"
+    }
+  ]
+}

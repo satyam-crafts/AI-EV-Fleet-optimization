@@ -1,0 +1,226 @@
+[
+  {
+    "id": "EV-101",
+    "name": "Rivian EDV-700 Prime",
+    "make": "Rivian",
+    "model": "EDV 700",
+    "battery_spec": {
+      "capacity_kwh": 135.0,
+      "max_charge_power_kw": 150.0,
+      "max_discharge_power_kw": 150.0,
+      "nominal_voltage_v": 400.0,
+      "chemistry": "NMC",
+      "degradation_factor": 0.98,
+      "cycle_count": 120
+    },
+    "battery_state": {
+      "soc": 88.0,
+      "min_soc_limit": 15.0,
+      "max_soc_limit": 90.0,
+      "health_status": "EXCELLENT",
+      "temperature_c": 22.5
+    },
+    "consumption_rate_kwh_per_km": 0.28,
+    "current_status": "IDLE",
+    "current_location": "Depot North Yard",
+    "assigned_route_id": null,
+    "charging_station_id": null,
+    "last_updated": "2026-10-01T07:38:26.433908Z"
+  },
+  {
+    "id": "EV-102",
+    "name": "Ford E-Transit Cargo",
+    "make": "Ford",
+    "model": "E-Transit 350",
+    "battery_spec": {
+      "capacity_kwh": 68.0,
+      "max_charge_power_kw": 115.0,
+      "max_discharge_power_kw": 150.0,
+      "nominal_voltage_v": 400.0,
+      "chemistry": "NMC",
+      "degradation_factor": 0.95,
+      "cycle_count": 210
+    },
+    "battery_state": {
+      "soc": 32.0,
+      "min_soc_limit": 15.0,
+      "max_soc_limit": 90.0,
+      "health_status": "GOOD",
+      "temperature_c": 24.0
+    },
+    "consumption_rate_kwh_per_km": 0.31,
+    "current_status": "IDLE",
+    "current_location": "Depot South Yard",
+    "assigned_route_id": null,
+    "charging_station_id": null,
+    "last_updated": "2026-10-01T07:38:26.433908Z"
+  },
+  {
+    "id": "EV-103",
+    "name": "BrightDrop Zevo 600 Express",
+    "make": "BrightDrop",
+    "model": "Zevo 600",
+    "battery_spec": {
+      "capacity_kwh": 165.0,
+      "max_charge_power_kw": 120.0,
+      "max_discharge_power_kw": 150.0,
+      "nominal_voltage_v": 400.0,
+      "chemistry": "NMC",
+      "degradation_factor": 0.96,
+      "cycle_count": 145
+    },
+    "battery_state": {
+      "soc": 75.0,
+      "min_soc_limit": 15.0,
+      "max_soc_limit": 90.0,
+      "health_status": "GOOD",
+      "temperature_c": 21.0
+    },
+    "consumption_rate_kwh_per_km": 0.34,
+    "current_status": "IDLE",
+    "current_location": "Depot North Yard",
+    "assigned_route_id": null,
+    "charging_station_id": null,
+    "last_updated": "2026-10-01T07:38:26.433908Z"
+  },
+  {
+    "id": "EV-104",
+    "name": "Volvo FL Electric Medium Duty",
+    "make": "Volvo",
+    "model": "FL Electric 4x2",
+    "battery_spec": {
+      "capacity_kwh": 264.0,
+      "max_charge_power_kw": 150.0,
+      "max_discharge_power_kw": 150.0,
+      "nominal_voltage_v": 600.0,
+      "chemistry": "NMC",
+      "degradation_factor": 0.94,
+      "cycle_count": 320
+    },
+    "battery_state": {
+      "soc": 62.0,
+      "min_soc_limit": 20.0,
+      "max_soc_limit": 90.0,
+      "health_status": "GOOD",
+      "temperature_c": 26.0
+    },
+    "consumption_rate_kwh_per_km": 0.88,
+    "current_status": "IDLE",
+    "current_location": "Depot Heavy Bay",
+    "assigned_route_id": null,
+    "charging_station_id": null,
+    "last_updated": "2026-10-01T07:38:26.433908Z"
+  },
+  {
+    "id": "EV-105",
+    "name": "Ford E-Transit Express 2",
+    "make": "Ford",
+    "model": "E-Transit 350",
+    "battery_spec": {
+      "capacity_kwh": 68.0,
+      "max_charge_power_kw": 115.0,
+      "max_discharge_power_kw": 150.0,
+      "nominal_voltage_v": 400.0,
+      "chemistry": "NMC",
+      "degradation_factor": 0.82,
+      "cycle_count": 850
+    },
+    "battery_state": {
+      "soc": 22.0,
+      "min_soc_limit": 15.0,
+      "max_soc_limit": 85.0,
+      "health_status": "ATTENTION",
+      "temperature_c": 28.0
+    },
+    "consumption_rate_kwh_per_km": 0.32,
+    "current_status": "IDLE",
+    "current_location": "Depot South Yard",
+    "assigned_route_id": null,
+    "charging_station_id": null,
+    "last_updated": "2026-10-01T07:38:26.433908Z"
+  },
+  {
+    "id": "EV-106",
+    "name": "Rivian EDV-700 Runner",
+    "make": "Rivian",
+    "model": "EDV 700",
+    "battery_spec": {
+      "capacity_kwh": 135.0,
+      "max_charge_power_kw": 150.0,
+      "max_discharge_power_kw": 150.0,
+      "nominal_voltage_v": 400.0,
+      "chemistry": "NMC",
+      "degradation_factor": 0.99,
+      "cycle_count": 45
+    },
+    "battery_state": {
+      "soc": 91.0,
+      "min_soc_limit": 15.0,
+      "max_soc_limit": 90.0,
+      "health_status": "EXCELLENT",
+      "temperature_c": 20.0
+    },
+    "consumption_rate_kwh_per_km": 0.27,
+    "current_status": "IDLE",
+    "current_location": "Depot North Yard",
+    "assigned_route_id": null,
+    "charging_station_id": null,
+    "last_updated": "2026-10-01T07:38:26.433908Z"
+  },
+  {
+    "id": "EV-107",
+    "name": "BrightDrop Zevo 400 Urban",
+    "make": "BrightDrop",
+    "model": "Zevo 400",
+    "battery_spec": {
+      "capacity_kwh": 120.0,
+      "max_charge_power_kw": 120.0,
+      "max_discharge_power_kw": 150.0,
+      "nominal_voltage_v": 400.0,
+      "chemistry": "NMC",
+      "degradation_factor": 0.97,
+      "cycle_count": 80
+    },
+    "battery_state": {
+      "soc": 54.0,
+      "min_soc_limit": 15.0,
+      "max_soc_limit": 90.0,
+      "health_status": "EXCELLENT",
+      "temperature_c": 21.5
+    },
+    "consumption_rate_kwh_per_km": 0.29,
+    "current_status": "IDLE",
+    "current_location": "Depot North Yard",
+    "assigned_route_id": null,
+    "charging_station_id": null,
+    "last_updated": "2026-10-01T07:38:26.433908Z"
+  },
+  {
+    "id": "EV-108",
+    "name": "Mercedes eSprinter Service Van",
+    "make": "Mercedes-Benz",
+    "model": "eSprinter L2H2",
+    "battery_spec": {
+      "capacity_kwh": 81.0,
+      "max_charge_power_kw": 115.0,
+      "max_discharge_power_kw": 150.0,
+      "nominal_voltage_v": 400.0,
+      "chemistry": "NMC",
+      "degradation_factor": 0.91,
+      "cycle_count": 420
+    },
+    "battery_state": {
+      "soc": 48.0,
+      "min_soc_limit": 15.0,
+      "max_soc_limit": 90.0,
+      "health_status": "GOOD",
+      "temperature_c": 23.0
+    },
+    "consumption_rate_kwh_per_km": 0.3,
+    "current_status": "IDLE",
+    "current_location": "Depot South Yard",
+    "assigned_route_id": null,
+    "charging_station_id": null,
+    "last_updated": "2026-10-01T07:38:26.433908Z"
+  }
+]

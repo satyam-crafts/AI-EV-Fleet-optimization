@@ -57,11 +57,7 @@ async def root_health_check():
     }
 
 
-@app.get("/api/v1/health", tags=["Health"])
-async def api_v1_health_check():
-    """Versioned API health check endpoint."""
-    return {
-        "status": "healthy",
-        "api_version": "v1",
-        "environment": settings.ENVIRONMENT,
-    }
+# Include V1 Router
+from backend.app.api.v1.router import api_v1_router
+app.include_router(api_v1_router)
+

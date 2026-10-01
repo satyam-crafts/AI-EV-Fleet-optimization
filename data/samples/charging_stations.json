@@ -1,0 +1,88 @@
+[
+  {
+    "id": "CS-DEPOT-DC",
+    "name": "Depot DC Fast Charging Bay",
+    "location": "Depot North Yard",
+    "total_power_capacity_kw": 300.0,
+    "charging_efficiency": 0.92,
+    "ports": [
+      {
+        "port_id": "P-DC1",
+        "connector_type": "CCS2",
+        "max_power_kw": 150.0,
+        "status": "AVAILABLE",
+        "current_vehicle_id": null
+      },
+      {
+        "port_id": "P-DC2",
+        "connector_type": "CCS2",
+        "max_power_kw": 150.0,
+        "status": "AVAILABLE",
+        "current_vehicle_id": null
+      }
+    ],
+    "base_cost_per_kwh": 0.0
+  },
+  {
+    "id": "CS-DEPOT-AC",
+    "name": "Depot Overnight Level 2 Bay",
+    "location": "Depot South Yard",
+    "total_power_capacity_kw": 100.0,
+    "charging_efficiency": 0.9,
+    "ports": [
+      {
+        "port_id": "P-AC1",
+        "connector_type": "TYPE_2",
+        "max_power_kw": 22.0,
+        "status": "AVAILABLE",
+        "current_vehicle_id": null
+      },
+      {
+        "port_id": "P-AC2",
+        "connector_type": "TYPE_2",
+        "max_power_kw": 22.0,
+        "status": "AVAILABLE",
+        "current_vehicle_id": null
+      },
+      {
+        "port_id": "P-AC3",
+        "connector_type": "TYPE_2",
+        "max_power_kw": 22.0,
+        "status": "AVAILABLE",
+        "current_vehicle_id": null
+      },
+      {
+        "port_id": "P-AC4",
+        "connector_type": "TYPE_2",
+        "max_power_kw": 22.0,
+        "status": "AVAILABLE",
+        "current_vehicle_id": null
+      }
+    ],
+    "base_cost_per_kwh": 0.0
+  },
+  {
+    "id": "CS-HUB-FAST",
+    "name": "Metro Logistics Hub High-Power Charger",
+    "location": "Metro Logistics Center",
+    "total_power_capacity_kw": 200.0,
+    "charging_efficiency": 0.93,
+    "ports": [
+      {
+        "port_id": "P-HUB1",
+        "connector_type": "CCS2",
+        "max_power_kw": 100.0,
+        "status": "AVAILABLE",
+        "current_vehicle_id": null
+      },
+      {
+        "port_id": "P-HUB2",
+        "connector_type": "CCS2",
+        "max_power_kw": 100.0,
+        "status": "AVAILABLE",
+        "current_vehicle_id": null
+      }
+    ],
+    "base_cost_per_kwh": 0.02
+  }
+]

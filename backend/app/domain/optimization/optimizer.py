@@ -272,14 +272,16 @@ class FleetOptimizationEngine:
 
         elapsed_ms = (time.perf_counter() - start_exec_time) * 1000.0
 
-        return OptimizationResult(
+        from backend.app.domain.explainability.generator import generate_recommendations_for_result
+
+        partial_result = OptimizationResult(
             id=f"opt-{uuid.uuid4().hex[:8]}",
             timestamp=datetime.now(timezone.utc),
             status=status,
             planning_horizon_hours=request.planning_horizon_hours,
             assignments=assignments,
             charging_plans=charging_plans,
-            recommendations=[],  # Will be populated by explainability layer
+            recommendations=[],
             total_fleet_energy_kwh=round(total_fleet_energy_kwh, 2),
             total_charging_cost=round(total_optimized_charging_cost, 2),
             baseline_comparison=baseline_comparison,
@@ -288,3 +290,7 @@ class FleetOptimizationEngine:
             unassigned_routes=unassigned_routes,
             execution_time_ms=round(elapsed_ms, 2),
         )
+
+        partial_result.recommendations = generate_recommendations_for_result(partial_result)
+        return partial_result
+

@@ -1,0 +1,10 @@
+# Ignore local build context noise; keep image lean.
+.git
+.venv
+**/__pycache__
+**/.pytest_cache
+**/node_modules
+frontend/dist
+.env
+*.md
+.cursor

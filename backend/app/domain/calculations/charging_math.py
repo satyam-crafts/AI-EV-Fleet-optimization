@@ -83,9 +83,13 @@ def calculate_charging_cost(
     total_grid_energy = 0.0
     rate_type_counts = {t: 0 for t in TariffRateType}
 
-    # Step in 15-minute segments for fast, accurate TOU integration
+    # Step in 15-minute segments for fast, accurate TOU integration.
+    # Duration already accounts for efficiency losses (longer session at charger power);
+    # charging_power_kw is treated as grid-side draw. The efficiency argument is kept for
+    # API symmetry with duration helpers and must not be applied again here.
     step_minutes = 15
-    power_draw_kw = charging_power_kw  # Power drawn from grid
+    power_draw_kw = charging_power_kw
+    _ = efficiency  # acknowledged; applied via session duration, not power
     step_energy_kwh = power_draw_kw * (step_minutes / 60.0)
 
     current_time = start_time

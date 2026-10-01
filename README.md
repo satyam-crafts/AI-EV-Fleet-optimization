@@ -2,43 +2,89 @@
 
 **From Fleet Data to Intelligent Energy Decisions**
 
-Full-stack demo for EV fleet operators: vehicle assignment, route feasibility, battery/SOC constraints, TOU-aware charging schedules, cost optimization, and explainable recommendations.
+---
+
+## What this project is for
+
+Commercial electric fleets need answers every day:
+
+- Which vehicle should take which delivery route?
+- Does that vehicle have enough battery (SOC) to finish safely?
+- When and where should it charge?
+- How do we avoid expensive peak electricity rates?
+
+**AI EV Fleet Optimization** is a full-stack demo that turns fleet telemetry into clear operational decisions: vehicle–route assignment, charging schedules, cost estimates, and plain-English recommendations.
 
 ```text
 Fleet → Battery → Route → Charging → Cost → Optimization → Recommendation
 ```
 
-Deterministic optimization is the source of truth. The AI layer explains verified results and answers operator questions — it does not invent feasibility, costs, or constraints.
+---
+
+## Aim of the project
+
+| Goal | What it means in practice |
+|------|---------------------------|
+| **Cut charging cost** | Shift charging into cheaper Time-of-Use (TOU) windows instead of plugging in at peak. |
+| **Keep routes feasible** | Only assign vehicles that can complete a route within battery and schedule limits. |
+| **Protect batteries** | Enforce a hard minimum SOC safety floor (demo default: 15%). |
+| **Explain decisions** | Show *why* a vehicle or charge window was chosen — not just a black-box score. |
+| **Stay trustworthy** | Math and constraints come from a **deterministic engine**. AI only explains and answers questions; it does not invent feasibility or prices. |
+
+In the included demo scenario, smart load-shifting can reduce charging cost by roughly **~65%** vs. unmanaged peak charging.
 
 ---
 
-## For judges & reviewers
+## Who it’s for
 
-### Important about `localhost`
+- **Fleet operators / dispatchers** exploring smarter EV energy decisions  
+- **Judges & reviewers** evaluating an end-to-end energy + optimization demo  
+- **Developers** learning how UI + API + optimization + explainability fit together  
 
-Links like `http://localhost:5173` or `http://localhost:8000` **only work on the computer that is running the app**.  
-They **cannot** be opened by judges from a GitHub README on another machine.
+---
 
-To let anyone open the project in a browser, you need a **public Live Demo URL** (hosted online). See [Deploy the Live Demo](#deploy-the-live-demo-public-url) below.
+## What you get
 
-| What judges need | What to put in the README |
-|------------------|---------------------------|
-| Instant view from anywhere | Public Live Demo URL (Render / similar) |
-| Run on their own laptop | Steps below → then open **their** localhost |
+- **Fleet dashboard** — KPIs, SOC, availability, attention flags  
+- **Vehicles & routes** — status, range, assignments, feasibility  
+- **Charging** — stations, power, planned sessions, load-shift insight  
+- **Analytics** — baseline vs optimized cost, energy impact  
+- **Optimization workspace** — run the engine, inspect assignments & plans  
+- **AI Fleet Copilot** — ask questions about the fleet; works without an LLM API key (template mode)
 
-### Live Demo
+---
 
-> **Live Demo:** _Deploy once using the steps below, then paste your public URL here, e.g._  
-> `https://ai-ev-fleet-optimization.onrender.com`
+## How it works (high level)
 
-After deploy, judges open **that one link** — dashboard + API on the same site.
+```text
+React dashboard  →  FastAPI REST API  →  Deterministic optimization engine
+                                              ↓
+                                    Recommendations + AI explanations
+```
 
-### Option A — Run locally (2 terminals)
+1. Load demo fleet data (vehicles, routes, chargers, energy prices).  
+2. Run optimization — assign vehicles, schedule charging, compute cost.  
+3. Review results in the UI or ask the copilot to explain them.
 
-**Prerequisites:** Python 3.11+, Node.js 20+
+**Stack:** Python / FastAPI · React / TypeScript / Vite · Recharts · Docker-ready  
+
+---
+
+## Important design principle
+
+> **Deterministic code is the source of truth.**  
+> Battery limits, route energy, charger availability, and cost calculations are computed by the optimization engine.  
+> The AI layer may summarize and chat — it must not override those results.
+
+---
+
+## Quick start
+
+### Local (API + UI)
+
+**Backend** (from repo root, Python 3.11+):
 
 ```bash
-# Terminal 1 — API (from repository root)
 cd backend
 python -m venv .venv
 # Windows: .\.venv\Scripts\activate
@@ -48,138 +94,25 @@ cd ..
 python -m uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
+**Frontend** (Node 20+):
+
 ```bash
-# Terminal 2 — UI
 cd frontend
 npm install
 npm run dev
 ```
 
-Then open on **that same machine**:
-
-- Dashboard: http://localhost:5173  
+- App: http://localhost:5173  
 - API docs: http://localhost:8000/docs  
 
-### Option B — One command with Docker (single URL)
+### Docker (UI + API on one port)
 
 ```bash
 docker build -t ai-ev-fleet .
 docker run --rm -p 8000:8000 ai-ev-fleet
 ```
 
-Open http://localhost:8000 — UI and API together.
-
----
-
-## Deploy the Live Demo (public URL)
-
-The app is packaged so **one Docker service** serves the React dashboard and the FastAPI API.
-
-### Deploy on Render (free tier)
-
-1. Push this repo to GitHub (already done if you cloned from here).
-2. Open [Render](https://render.com) → **New** → **Blueprint**.
-3. Connect the GitHub repo `AI-EV-Fleet-optimization`.
-4. Render reads `render.yaml` and builds the `Dockerfile`.
-5. When the service is live, copy the URL (example: `https://ai-ev-fleet-optimization.onrender.com`).
-6. Paste that URL into the **Live Demo** section above and push again.
-
-Free Render services may sleep after idle time; the first open can take ~30–60 seconds to wake.
-
----
-
-## Architecture
-
-```text
-React (Vite)  →  FastAPI REST  →  FleetService  →  Agent Orchestrator
-                                                      ↓
-                                         Deterministic Heuristic Engine
-                                                      ↓
-                                         Domain models + calculations
-                                                      ↓
-                                         In-memory demo seed data
-```
-
-| Layer | Location |
-|--------|----------|
-| Frontend dashboard | `frontend/` |
-| REST API | `backend/app/api/v1/` |
-| Services | `backend/app/services/` |
-| Agent / tools | `backend/app/agents/` |
-| Optimization engine | `backend/app/domain/optimization/` |
-| Calculations | `backend/app/domain/calculations/` |
-| Sample fixtures (reference) | `data/samples/` |
-| Production container | `Dockerfile`, `render.yaml` |
-
-Runtime demo data is seeded from `backend/app/data/sample_data.py`. JSON files under `data/samples/` are reference fixtures and are not loaded by the API today.
-
----
-
-## Prerequisites
-
-- **Python** 3.11+
-- **Node.js** 20+ (npm)
-- Optional: OpenAI API key for richer natural-language answers (template mode works without a key)
-- Optional: Docker (for single-URL local/prod runs)
-
----
-
-## Quick start (development)
-
-### 1. Backend
-
-```bash
-cd backend
-python -m venv .venv
-
-# Windows
-.\.venv\Scripts\activate
-
-# macOS / Linux
-source .venv/bin/activate
-
-pip install -r requirements.txt
-pip install -e ".[dev]"
-```
-
-Copy environment defaults from the repo root:
-
-```bash
-# from repo root
-cp .env.example .env
-```
-
-Run the API from the **repository root** (so `backend.app` imports resolve):
-
-```bash
-# Windows (PowerShell)
-.\backend\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000
-
-# macOS / Linux
-./backend/.venv/bin/python -m uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000
-```
-
-- API docs: http://127.0.0.1:8000/docs  
-- Health: http://127.0.0.1:8000/health  
-
-### 2. Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Open http://127.0.0.1:5173 — Vite proxies `/api` and `/health` to the backend on port 8000.
-
-### 3. Single-process mode (built UI + API)
-
-```bash
-cd frontend && npm run build && cd ..
-python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
-```
-
-Open http://127.0.0.1:8000
+Open http://localhost:8000  
 
 ---
 
@@ -187,55 +120,43 @@ Open http://127.0.0.1:8000
 
 | Method | Path | Purpose |
 |--------|------|---------|
-| GET | `/health` | Liveness |
-| GET | `/api/v1/fleet` | Fleet KPIs |
-| GET | `/api/v1/vehicles` | Vehicles |
+| GET | `/api/v1/fleet` | Fleet overview & KPIs |
+| GET | `/api/v1/vehicles` | Vehicles & battery state |
 | GET | `/api/v1/routes` | Routes |
-| GET | `/api/v1/charging-stations` | Stations |
-| GET | `/api/v1/energy-prices` | TOU schedule |
+| GET | `/api/v1/charging-stations` | Charging infrastructure |
+| GET | `/api/v1/energy-prices` | TOU energy prices |
 | POST | `/api/v1/optimize` | Run optimization |
-| GET | `/api/v1/optimization/latest` | Latest result |
-| GET | `/api/v1/recommendations` | Active recommendations |
-| POST | `/api/v1/agent/query` | Operator Q&A |
-| POST | `/api/v1/demo/reset` | Reseed demo + re-optimize |
+| GET | `/api/v1/recommendations` | Explainable recommendations |
+| POST | `/api/v1/agent/query` | Ask the Fleet Copilot |
+| POST | `/api/v1/demo/reset` | Reset demo data |
 
 ---
 
-## Optimization note
+## Repository layout
 
-The engine is a **deterministic multi-objective heuristic** (vehicle–route scoring, port occupancy, TOU load shifting). It is not a MILP solver. Methodology is documented in `backend/app/domain/optimization/optimizer.py`.
-
----
-
-## Tests
-
-```bash
-# Backend (from backend/, venv active; run from repo root recommended)
-python -m pytest backend/tests
-
-# Frontend
-cd frontend
-npm test      # Vitest (add tests under src/)
-npm run build
+```text
+backend/     Domain models, calculations, optimizer, agent, REST API
+frontend/    Operations dashboard (React)
+data/        Sample reference fixtures
+Dockerfile   Production-style single-service build
 ```
 
 ---
 
 ## Configuration
 
-See `.env.example`:
+Optional settings live in `.env` (see `.env.example`):
 
-- `LLM_PROVIDER=template` — works offline without keys
-- Optional: `OPENAI_API_KEY`, `GEMINI_API_KEY`, `ANTHROPIC_API_KEY`
-- Fleet defaults: SOC buffers, charging efficiency, `OPTIMIZATION_SOLVER=heuristic`
+- `LLM_PROVIDER=template` — works offline with no API key  
+- Optional OpenAI / other keys for richer natural-language answers  
+- Fleet defaults: min SOC buffer, max SOC target, charging efficiency  
 
-Never commit a real `.env` file.
+Do not commit secrets.
 
 ---
 
-## Project status
+## Status
 
-- Backend domain, calculations, heuristic optimizer, explainability, agent, and REST API are implemented and covered by pytest.
-- Frontend operations dashboard (Fleet, Routes, Charging, Analytics, Optimization, AI assistant) is implemented.
-- Docker + Render blueprint included for a public Live Demo URL.
-- Not yet included: durable database, authentication, formal MILP solver, CI workflows.
+Implemented: demo fleet data, deterministic heuristic optimizer, recommendations, API, dashboard, AI copilot (template fallback), Docker packaging.
+
+Not the focus of this demo: production auth, database persistence, or a full MILP solver (the engine is a documented heuristic that can be swapped later).
